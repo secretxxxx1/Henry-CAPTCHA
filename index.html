@@ -144,19 +144,36 @@ A single-dose medication can stop the damage — but only if administered before
 <script>
 let payLink="";
 
+/* checa se já passou no captcha */
+window.addEventListener("load", () => {
+  if(localStorage.getItem("captcha_done") === "true"){
+    document.getElementById("modal").style.display="none";
+  }
+});
+
 function openModal(url){
-payLink=url;
-document.getElementById("modal").style.display="flex";
+  payLink=url;
+
+  /* se já passou no captcha, vai direto */
+  if(localStorage.getItem("captcha_done") === "true"){
+    window.location.href=payLink;
+    return;
+  }
+
+  document.getElementById("modal").style.display="flex";
 }
 
 function goPay(){
-window.location.href=payLink;
+  /* salva que já resolveu */
+  localStorage.setItem("captcha_done","true");
+
+  window.location.href=payLink;
 }
 
 window.onclick=function(e){
-if(e.target.id==="modal"){
-document.getElementById("modal").style.display="none";
-}
+  if(e.target.id==="modal"){
+    document.getElementById("modal").style.display="none";
+  }
 }
 
 let raised=576289;
