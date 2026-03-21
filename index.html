@@ -169,27 +169,39 @@ bar.style.width=Math.min(raised/2000000*100,100)+'%';
 update();
 setInterval(update,4000);
 
-const names=['Anna 🇨🇦','Lucas 🇨🇵','Mia 🇨🇮','Noah 🇺🇸','Emma 🇦🇪','James 🇩🇪','Sophia 🇧🇷','Alissa 🇨🇭','Yuri 🇨🇳'];
-const vals=['$10','$25','$50','$100','346','3000','74'];
+/* ===== FEED MELHORADO ===== */
+const names=[
+'Olivia 🇺🇸','Mateo 🇪🇸','Liam 🇬🇧','Emma 🇨🇦','Noah 🇦🇺',
+'Sophia 🇧🇷','Lucas 🇫🇷','Mia 🇮🇹','Ethan 🇩🇪','Ava 🇳🇱',
+'Leo 🇸🇪','Isabella 🇲🇽','Daniel 🇨🇭','Chloe 🇧🇪','Yuki 🇯🇵'
+];
+
+const vals=['$10','$17','$25','$32','$50','$68','$100','$250'];
+
 const feed=document.getElementById('feed');
+
+function randomTime(){
+const mins=Math.floor(Math.random()*9)+1;
+return mins+" min ago";
+}
+
 function add(){
 const d=document.createElement('div');
-d.innerHTML=`<span>${names[Math.random()*names.length|0]}</span><span>${vals[Math.random()*vals.length|0]}</span>`;
+d.innerHTML=`<span>${names[Math.random()*names.length|0]} • ${randomTime()}</span><span>${vals[Math.random()*vals.length|0]}</span>`;
 feed.prepend(d);
 if(feed.children.length>4)feed.lastChild.remove();
 }
+
 for(let i=0;i<3;i++)add();
 setInterval(add,3500);
 
 const deadline=new Date();
 deadline.setMonth(deadline.getMonth()+6);
 
-/* CORREÇÃO REAL AQUI */
 function monthsLeft(){
 const now = new Date();
 let months = (deadline.getFullYear() - now.getFullYear()) * 12;
 months += deadline.getMonth() - now.getMonth();
-
 document.getElementById('months').textContent = Math.max(0, months);
 }
 
