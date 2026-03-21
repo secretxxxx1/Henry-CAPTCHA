@@ -8,7 +8,7 @@
 
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <!-- Meta Pixel Code -->
+<!-- Meta Pixel Code -->
 <script>
   !function(f,b,e,v,n,t,s)
   {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -26,9 +26,8 @@
   src="https://www.facebook.com/tr?id=961141072401536&ev=PageView&noscript=1"/>
 </noscript>
 <!-- End Meta Pixel Code -->
-
+  
 <style>
-/* SEU CSS ORIGINAL (intacto) */
 :root{
 --bg:#f4f6f8;--card:#ffffff;--text:#0f172a;--muted:#64748b;
 --green:#22c55e;--green-soft:#dcfce7;--red:#dc2626;--border:#e5e7eb;
@@ -60,7 +59,6 @@ h1{font-size:1.25rem;margin:.2rem 0 .5rem;}
 .fixed-cta{position:fixed;bottom:0;left:0;right:0;background:var(--red);padding:.9rem;}
 .fixed-cta a{display:block;text-align:center;color:#fff;font-weight:700;letter-spacing:.02em;cursor:pointer;}
 
-/* MODAL CAPTCHA (isolado, não interfere no layout) */
 .modal{
 position:fixed;
 inset:0;
@@ -102,17 +100,16 @@ A single-dose medication can stop the damage — but only if administered before
 <span class="goal">$2,000,000 goal</span>
 </div>
 
-
-  <div class="progress-bar">
-    <div class="progress-fill" id="bar"></div>
-  </div>
+<div class="progress-bar">
+<div class="progress-fill" id="bar"></div>
+</div>
 </div>
 
-  <div class="stats">
-    <div class="stat"><strong>28%</strong>Reached</div>
-    <div class="stat"><strong id="months">6</strong>Months left</div>
-    <div class="stat"><strong>$1.42M</strong>Needed</div>
-  </div>
+<div class="stats">
+<div class="stat"><strong>28%</strong>Reached</div>
+<div class="stat"><strong id="months">6</strong>Months left</div>
+<div class="stat"><strong>$1.42M</strong>Needed</div>
+</div>
 
 <div class="amounts">
 <a class="amount primary" onclick="openModal('https://donate.stripe.com/9B69AS7XHbXG7ct8Kkc3m07')">$10</a>
@@ -138,7 +135,6 @@ A single-dose medication can stop the damage — but only if administered before
 <a onclick="openModal('https://donate.stripe.com/3cIeVcem53ra54l4u4c3m0c')">Donate now</a>
 </div>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
 <div class="modal-box">
 <div class="g-recaptcha" data-sitekey="6Lde7pEsAAAAANMe0gdFrxqDrrIKcWWKBB2Wwbe0" data-callback="goPay"></div>
@@ -163,7 +159,6 @@ document.getElementById("modal").style.display="none";
 }
 }
 
-// SEU JS ORIGINAL (intacto)
 let raised=576289;
 const bar=document.getElementById('bar');
 function update(){
@@ -188,10 +183,16 @@ setInterval(add,3500);
 
 const deadline=new Date();
 deadline.setMonth(deadline.getMonth()+6);
+
+/* CORREÇÃO REAL AQUI */
 function monthsLeft(){
-const diff=Math.max(0,deadline-new Date());
-document.getElementById('months').textContent=Math.ceil(diff/86400000);
+const now = new Date();
+let months = (deadline.getFullYear() - now.getFullYear()) * 12;
+months += deadline.getMonth() - now.getMonth();
+
+document.getElementById('months').textContent = Math.max(0, months);
 }
+
 monthsLeft();
 </script>
 
